@@ -8,12 +8,13 @@ export class AuthController {
     constructor(private readonly authService: AuthService) {}
 
     @Post('register')
-    async register(@Body() RegisterDto: RegisterDto) {
-        return this.authService.register(RegisterDto.email, RegisterDto.password);
+    async register(@Body() registerDto: RegisterDto) {
+        return this.authService.register(registerDto);
     }
 
     @Post('login')
-    async login(@Body() LoginDto: LoginDto) {
-        return this.authService.login(LoginDto.email, LoginDto.password);
+    async login(@Body() loginDto: LoginDto) {
+        const { identifier, password } = loginDto;
+        return this.authService.login(identifier, password);
     }
 }
